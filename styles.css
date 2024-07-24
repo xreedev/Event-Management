@@ -1,19 +1,21 @@
 :root {
-  --new-black: #252422;
-  --light-orange: #eb5e28;
-  --new-white: #fffcf2;
-  --light-brown: #ccc5b9;
+  --new-black: #1f2833; /* Dark blueish black */
+  --light-orange: #66ffcc; /* Turquoise */
+  --new-white: #eef5db; /* Pale greenish white */
+  --light-brown: #9a8c98; /* Dusty lavender */
+  --background-color: #e0e0e0;
 }
 
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body,
 html {
-  height: 100vh;
-  width: 100vw;
+  background-color: var(--background-color);
+  height: 100%;
   font-family: monospace;
 }
 
@@ -26,45 +28,64 @@ html {
   margin: 20px auto;
   font-size: large;
   font-weight: bold;
-  border: 3px solid var(--light-orange);
-  width: 35%;
+  width: 80%;
+  max-width: 600px;
   border-radius: 5px;
 }
 
 .upload-csv-div {
-  background-color:var(--new-black) ;
-  border-radius: 5px;
+  background-color: var(--new-black);
+  border-radius: 10px;
+  border: 5px solid var(--light-orange);
   color: var(--light-brown);
   padding: 10px;
 }
 
 .title-header {
-  font-family:Georgia, 'Times New Roman', Times, serif, Courier, monospace;
-  font-size: 30px;
+  font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
+  font-size: 2.3rem;
   font-weight: bold;
-  display: inline-block;
   color: var(--new-black);
 }
+
 .input-file {
   background-color: var(--new-black);
-  margin: 5%;
+  margin: 5% auto;
   border: 1px solid var(--light-brown);
-  padding: 15% 5% 15% 5%;
-  width: 58%;
+  padding: 8% 5%;
+  width: 90%;
+  max-width: 400px;
   color: var(--new-white);
   cursor: pointer;
 }
 
 .submit-csv-button {
-  background-color: #eb5e28;
+  background-color: var(--light-orange);
   border-radius: 20px;
-  border: none;
-  width: 30%;
-  height: 25px;
+  border: 1px solid var(--new-white);
+  width: 50%;
+  max-width: 200px;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.csv-type-select{
-    width: 50%;
-    margin-top: 10px;
-    padding: 5px;
+.csv-type-select {
+  width: 80%;
+  max-width: 300px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.csv-type-label {
+  font-size: 15px;
+  color: #e0e0e0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.todo-header {
+  width: 100%;
+  background-color: var(--new-black);
+  color: var(--light-orange);
+  padding: 2%;
 }
