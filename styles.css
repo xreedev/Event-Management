@@ -70,10 +70,10 @@ html {
   margin-top: 20px;
 }
 
-.submit-csv-button:hover{
-    background-color: var(--new-white);
-    border: 1px solid var(--light-orange);
-  }
+.submit-csv-button:hover {
+  background-color: var(--new-white);
+  border: 1px solid var(--light-orange);
+}
 
 .csv-type-select {
   width: 80%;
