@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Event Manager</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <div class="page-container">
-            <div class="csv-input-div">
-            <h3>Upload CSV</h3>
-            <div class="upload-csv-div">
-                <select id="csv-type-select" class="csv-type-select" required>
-                    <option value="events">Events</option>
-                    <option value="tasks">Tasks</option>
-                </select>
-            </div>
-            </div>
+  <head>
+    <title>Event Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="title-header">Event Manager</div>
+      <div class="csv-input-div">
+        <h3>Upload CSV</h3>
+        <div class="upload-csv-div">
+          <label for="csv-type-select">Enter the type of CSV and upload</label>
+          <br />
+          <select id="csv-type-select" class="csv-type-select" required>
+            <option value="events">Events</option>
+            <option value="tasks">Tasks</option>
+          </select>
+          <br />
+          <input
+            type="file"
+            id="input-file"
+            name="filename"
+            class="input-file"
+          />
+          <br />
+          <input type="submit" class="submit-csv-button" />
         </div>
-        <script src="script.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
