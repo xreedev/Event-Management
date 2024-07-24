@@ -2,11 +2,19 @@
 <html>
     <head>
         <title>Event Manager</title>
-        <link href="styles.css" type="styles">
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <div class="page-container">
-
+            <div class="csv-input-div">
+            <h3>Upload CSV</h3>
+            <div class="upload-csv-div">
+                <select id="csv-type-select" class="csv-type-select" required>
+                    <option value="events">Events</option>
+                    <option value="tasks">Tasks</option>
+                </select>
+            </div>
+            </div>
         </div>
         <script src="script.js"></script>
     </body>
