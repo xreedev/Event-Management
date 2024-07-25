@@ -8,9 +8,11 @@ events.forEach((element) => {
   let eventId = element["eventId"];
   let startDate = element["startDate"];
   let endDate = element["endDate"];
-  console.log(eventName,eventId,startDate,endDate);
+
   let eventColumn = createRow(eventId, eventName, startDate, endDate);
+
   eventsTable.appendChild(eventColumn);
+  localStorage.setItem('status-event-'+eventId,'Not Started');
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -25,7 +27,7 @@ function createRow(eventId, eventName, startDate, endDate) {
   nameRow.textContent = eventName;
   startDateRow.textContent = startDate;
   endDateRow.textContent = endDate;
-  progressRow.textContent="Pending";
+  progressRow.textContent="Not Started";
  
 
   let eventColumn = document.createElement("tr");
@@ -60,4 +62,8 @@ function createAction(eventId){
 function goToTasks(eventId){
   localStorage.setItem("eventId",eventId);
   window.location.href="./tasks.html";
+}
+
+function checkProgress(){
+
 }
