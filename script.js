@@ -18,31 +18,45 @@ function submitCsv() {
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
   localStorage.setItem("csvFile", csvFile);
+  console.log(csvFile);
+  if (csvFile == "" || csvFile == null) {
+    alert("Please select a CSV file.");
+    return;
+  } else {
+    if (!csvFile["name"].toLowerCase().endsWith(".csv")) {
+      alert("Please select a file with a .csv extension.");
+      document.getElementById("input-file").value = "";
+      return;
+    }
+  }
+
   if (csvFile) {
     const reader = new FileReader();
 
     reader.onload = function (e) {
       const contents = e.target.result;
       if (csvType == "events") {
-        if(parseToEvent(contents)){alert("Events added successfully")};
+        if (parseToEvent(contents)) {
+          alert("Events added successfully");
+        }
       } else {
-        if(parseToTask(contents)){alert("Tasks added successfully")};
+        if (parseToTask(contents)) {
+          alert("Tasks added successfully");
+        }
       }
     };
 
     reader.readAsText(csvFile);
-  } else if (csvFile == "" || csvFile == null) {
-    alert("Submit a file");
-  } else {
-    alert("No file selected");
   }
 }
 
 function parseToEvent(contents) {
   let eventList = [];
   const rows = contents.split("\n");
-  const header=rows[0];
-  if(validateHeader(header,"events")){return false;};
+  const header = rows[0];
+  if (validateHeader(header, "events")) {
+    return false;
+  }
   rows.forEach((row) => {
     const columns = row.split(",");
     const event = new Event(columns[0], columns[1], columns[2], columns[3]);
@@ -56,8 +70,10 @@ function parseToEvent(contents) {
 function parseToTask(contents) {
   let taskList = [];
   const rows = contents.split("\n");
-  const header=rows[0];
-  if(validateHeader(header,"tasks")){return false;};
+  const header = rows[0];
+  if (validateHeader(header, "tasks")) {
+    return false;
+  }
   rows.forEach((row) => {
     const columns = row.split(",");
     const event = new Task(columns[0], columns[1]);
@@ -68,26 +84,21 @@ function parseToTask(contents) {
   return taskList;
 }
 
-function validateHeader(header,type){
-    console.log(header);
-    if(type=='events'){
-       if(header.trim()=='eventid,eventname,start_date,end_date')
-       {
-               alert("Correct row");
-       }
-       else{
-        alert("Incorrect event headers");
-        return true;
-       }
+function validateHeader(header, type) {
+  console.log(header);
+  if (type == "events") {
+    if (header.trim() == "eventid,eventname,start_date,end_date") {
+      alert("Correct row");
+    } else {
+      alert("Incorrect event headers");
+      return true;
     }
-    else if(type=='tasks'){
-        if(header.trim()=='eventid,task_name')
-            {
-                    alert("Correct row");
-            }
-            else{
-             alert("Incorrect task headers");
-             return true;
-            }
+  } else if (type == "tasks") {
+    if (header.trim() == "eventid,task_name") {
+      alert("Correct row");
+    } else {
+      alert("Incorrect task headers");
+      return true;
     }
+  }
 }
