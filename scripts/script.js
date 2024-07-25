@@ -1,3 +1,4 @@
+localStorage.clear();
 class Event {
   constructor(eventId, eventName, startDate, endDate) {
     this.eventName = eventName;
