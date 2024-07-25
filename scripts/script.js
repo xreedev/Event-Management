@@ -35,7 +35,7 @@ function submitCsv() {
     reader.onload = function (e) {
       const contents = e.target.result;
       if (csvType == "events") {
-        if (parseToEvent(contents)) {
+        if (parseToEvent(contents) && dateError==0) {
           setWarningPopup("Events added successfully");
         }
       } else {
@@ -57,15 +57,25 @@ function parseToEvent(contents) {
   if (validateHeader(header, "events")) {
     return false;
   }
-
+  let dateError=0;
   rows.forEach((row) => {
     if (row.trim() !== "") {
       const columns = row.split(",");
-      const event = new Event(columns[0], columns[1], columns[2], columns[3]);
-      eventList.push(event);
+      if(isValidDate(columns[2]) && isValidDate(columns[3]) ){
+        const event = new Event(columns[0], columns[1], columns[2], columns[3]);
+        eventList.push(event);
+      }
+      else{
+        dateError=1;
+      }
+
     }
   });
   localStorage.setItem("events", JSON.stringify(eventList));
+  if(dateError==1){
+    setWarningPopup("Invalid dates were found \n Check date format and value");
+    return false;
+  }
   return eventList;
 }
 
@@ -104,19 +114,30 @@ function validateHeader(header, type) {
 function setWarningPopup(msg) {
   document.getElementById("warning-msg").innerText = "MESSAGE\n" + msg;
   document.getElementById("warning-popup").style.padding = "20px";
-  let closeButton = document.createElement("input");
-  closeButton.className = "close-btn";
-  closeButton.id = "close";
-  closeButton.value = "CLOSE";
-  closeButton.addEventListener("click", reverseInvoice);
-  document.getElementById("warning-popup").appendChild(closeButton);
   document.getElementById("warning-popup").style.border = "2px solid black";
   document.getElementById("csv-input-div").style.opacity = "10%";
+  
+  let closeButton = document.getElementById("close");
+  if (!closeButton) {
+    closeButton = document.createElement("input");
+    closeButton.className = "close-btn";
+    closeButton.id = "close";
+    closeButton.value = "CLOSE";
+    closeButton.type = "button";
+    closeButton.addEventListener("click", reverseInvoice);
+    document.getElementById("warning-popup").appendChild(closeButton);
+  }
 }
+
 function reverseInvoice() {
   document.getElementById("warning-msg").innerText = "";
   document.getElementById("close").remove();
   document.getElementById("warning-popup").style.border = "none";
   document.getElementById("csv-input-div").style.opacity = "100%";
   document.getElementById("warning-popup").style.padding = "0px";
+}
+
+// Function for validation of date format
+function isValidDate(stringDate) {
+  return !isNaN(Date.parse(stringDate));
 }
