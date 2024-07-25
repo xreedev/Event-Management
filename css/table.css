@@ -1,0 +1,28 @@
+/* code pen table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding:6px 20px;
+  }
+  tr th {
+   border: 1px solid #dddddd;
+    text-align: center;
+    padding:6px 20px;
+    background-color: #ad1e23;
+    color:#fff;
+  }
+  
+  tr:hover {
+    background-color: #dddddd;
+    cursor: pointer;
+  }
+  
+  .content td, .content th {
+      border-top: 1px solid transparent;
+      padding: 2px 10px 2px 15px;
+  }
