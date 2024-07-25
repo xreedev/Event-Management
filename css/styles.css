@@ -1,14 +1,5 @@
 @import url("./header.css");
 
-.csv-input-div {
-  margin: 20px auto;
-  font-size: large;
-  font-weight: bold;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 5px;
-}
-
 .upload-csv-div {
   background-color: var(--new-black);
   border-radius: 10px;

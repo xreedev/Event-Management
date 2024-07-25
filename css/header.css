@@ -38,3 +38,12 @@
     color: var(--light-orange);
     padding: 2%;
   }
+  
+.contents-div {
+    margin: 20px auto;
+    font-size: large;
+    font-weight: bold;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+  }
