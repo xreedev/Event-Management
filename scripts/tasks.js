@@ -17,6 +17,7 @@ tasks.forEach((element) => {
 function createRow(taskId, taskName) {
   let idRow = document.createElement("td");
   let nameRow = document.createElement("td");
+  let statusRow=createStatusSelect();
 
   idRow.textContent = taskId;
   nameRow.textContent = taskName;
@@ -26,6 +27,31 @@ function createRow(taskId, taskName) {
 
   taskColumn.appendChild(idRow);
   taskColumn.appendChild(nameRow);
+  taskColumn.appendChild(statusRow);
 
   return taskColumn;
+}
+
+function createStatusSelect(){
+    let statusRow = document.createElement("td");
+    let statusSelect=document.createElement('select');
+
+    let notStartedOption=document.createElement('option');
+    notStartedOption.textContent="Not Started";
+    notStartedOption.value="Not-Started";
+
+    let progressOption=document.createElement('option');
+    progressOption.textContent="In Progress";
+    progressOption.value="In Progress";
+
+    let startedOption=document.createElement('option');
+    startedOption.textContent="Started";
+    startedOption.value="Started";
+
+    statusSelect.appendChild(notStartedOption);
+    statusSelect.appendChild(progressOption);
+    statusSelect.appendChild(startedOption);
+
+    statusRow.appendChild(statusSelect);
+    return statusRow;
 }
