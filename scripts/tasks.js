@@ -3,18 +3,21 @@ document.addEventListener("DOMContentLoaded", function () {
   tasks = JSON.parse(taskJson);
   tasksTable = document.getElementById("tasks-table");
   requiredEvent = localStorage.getItem("eventId");
-  taskLength = 0;
+  taskCount = 0;
+  statusArray = [];
 
   tasks.forEach((element) => {
     let taskId = element["eventId"];
     if (taskId == requiredEvent) {
-      taskLength += 1;
       let taskName = element["taskName"];
-      console.log(taskName, taskId);
       let taskColumn = createRow(taskId, taskName);
       tasksTable.appendChild(taskColumn);
     }
   });
+  if (localStorage.getItem("task-status-" + requiredEvent) == null) {
+    localStorage.setItem("task-status-" + requiredEvent, statusArray);
+  }
+  updateStatus();
 });
 
 function createRow(taskId, taskName) {
@@ -36,43 +39,50 @@ function createRow(taskId, taskName) {
 }
 
 function createStatusSelect() {
+  taskCount += 1;
   let statusRow = document.createElement("td");
   let statusSelect = document.createElement("select");
+  statusSelect.id = "task" + taskCount;
 
   let notStartedOption = document.createElement("option");
   notStartedOption.textContent = "Not Started";
-  notStartedOption.value = 0;
+  notStartedOption.value = "Not Started";
 
   let progressOption = document.createElement("option");
   progressOption.textContent = "In Progress";
-  progressOption.value = 1;
+  progressOption.value = "In Progress";
 
   let startedOption = document.createElement("option");
   startedOption.textContent = "Started";
-  startedOption.value = 2;
+  startedOption.value = "Started";
 
   statusSelect.appendChild(notStartedOption);
   statusSelect.appendChild(progressOption);
   statusSelect.appendChild(startedOption);
 
   statusRow.appendChild(statusSelect);
+  statusArray.push("Not Started");
   return statusRow;
 }
 
 function confirmStatus() {
+  statusList = [];
   let statusSelects = tasksTable.querySelectorAll("select");
-  let status = 0;
-
   statusSelects.forEach((select) => {
-    let statusValue = parseInt(select.value);
-    status += statusValue;
+    let status = select.value;
+    statusList.push(status);
   });
 
-  if (status > 0 && status < 2 * taskLength) {
-    console.log("status");
-    localStorage.setItem("status-event-" + requiredEvent, "In Progress");
-  } else if (status > 0 && status == tasks.length) {
-    localStorage.setItem("status-event-" + requiredEvent, "Complete");
+  let statusListJson = JSON.stringify(statusList);
+  localStorage.setItem("task-status-" + requiredEvent, statusListJson);
+}
+function updateStatus() {
+  let statusListJson = localStorage.getItem("task-status-" + requiredEvent);
+  let statusList = JSON.parse(statusListJson);
+
+  for (let i = 0; i < statusList.length; i++) {
+    let taskId = "task" + (i + 1);
+    let statusSelect = document.getElementById(taskId);
+    statusSelect.value = statusList[i];
   }
-  console.log(status);
 }
