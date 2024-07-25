@@ -1,20 +1,63 @@
-const events=localStorage.getItem("events");
-console.log(JSON.parse(events)[0]["eventId"]);
-function generateEventsTable(){
-    //create table
-    let eventsTable=document.createElement("table");
-    
+const eventJson = localStorage.getItem("events");
+let events=JSON.parse(eventJson);
+console.log(events);
+let eventsTable = document.getElementById("events-table");
 
+events.forEach((element) => {
+  let eventName = element["eventName"];
+  let eventId = element["eventId"];
+  let startDate = element["startDate"];
+  let endDate = element["endDate"];
+  console.log(eventName,eventId,startDate,endDate);
+  let eventColumn = createRow(eventId, eventName, startDate, endDate);
+  eventsTable.appendChild(eventColumn);
+});
 
+function createRow(eventId, eventName, startDate, endDate) {
+  let idRow = document.createElement("td");
+  let nameRow = document.createElement("td");
+  let startDateRow = document.createElement("td");
+  let endDateRow = document.createElement("td");
+  let progressRow=document.createElement("td");
+  let actionRow=createAction(eventId);
 
-    for (let i = 1; i <= events.length; i++) {
-      let tr = eventsTable.insertRow();
-      for (let j = 1; j <= cols; j++) {
-        let tc = tr.insertCell();
-        let input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.setAttribute("name", "row");
-        input.id = "mul" + x + "-" + i + "," + j;
-        tc.appendChild(input);
+  idRow.textContent = eventId;
+  nameRow.textContent = eventName;
+  startDateRow.textContent = startDate;
+  endDateRow.textContent = endDate;
+  progressRow.textContent="Pending";
+ 
+
+  let eventColumn = document.createElement("tr");
+  eventColumn.id = eventId;
+
+  eventColumn.appendChild(idRow);
+  eventColumn.appendChild(nameRow);
+  eventColumn.appendChild(startDateRow);
+  eventColumn.appendChild(endDateRow);
+  eventColumn.appendChild(progressRow);
+  eventColumn.appendChild(actionRow);
+
+  return eventColumn;
 }
-    }}
+
+
+function createAction(eventId){
+    let actionRow=document.createElement("td");
+    let actionAnchor=document.createElement("a");
+    actionAnchor.onclick=function(){
+      goToTasks(eventId);
+    }
+    let actionButton=document.createElement("button");
+
+    actionButton.textContent="TASK";
+    actionAnchor.appendChild(actionButton);
+    actionRow.appendChild(actionAnchor);
+    
+    return actionRow;
+}
+
+function goToTasks(eventId){
+  localStorage.setItem("eventId",eventId);
+  window.location.href="./tasks.html";
+}
