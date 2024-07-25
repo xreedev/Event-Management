@@ -56,13 +56,14 @@ function parseToEvent(contents) {
   if (validateHeader(header, "events")) {
     return false;
   }
-  
+
   rows.forEach((row) => {
-    if((row.trim())!==""){
-    const columns = row.split(",");
-    const event = new Event(columns[0], columns[1], columns[2], columns[3]);
-    eventList.push(event);
-  }});
+    if (row.trim() !== "") {
+      const columns = row.split(",");
+      const event = new Event(columns[0], columns[1], columns[2], columns[3]);
+      eventList.push(event);
+    }
+  });
   localStorage.setItem("events", JSON.stringify(eventList));
   return eventList;
 }
@@ -89,7 +90,7 @@ function validateHeader(header, type) {
       setWarningPopup("Incorrect event headers");
       document.getElementById("input-file").value = "";
       return true;
-    } 
+    }
   } else if (type == "tasks") {
     if (!(header.trim() == "eventid,task_name")) {
       setWarningPopup("Incorrect task headers");
@@ -108,13 +109,13 @@ function setWarningPopup(msg) {
   closeButton.value = "CLOSE";
   closeButton.addEventListener("click", reverseInvoice);
   document.getElementById("warning-popup").appendChild(closeButton);
-  document.getElementById("warning-popup").style.border="2px solid black";
+  document.getElementById("warning-popup").style.border = "2px solid black";
   document.getElementById("csv-input-div").style.opacity = "10%";
 }
 function reverseInvoice() {
   document.getElementById("warning-msg").innerText = "";
   document.getElementById("close").remove();
-  document.getElementById("warning-popup").style.border="none";
+  document.getElementById("warning-popup").style.border = "none";
   document.getElementById("csv-input-div").style.opacity = "100%";
   document.getElementById("warning-popup").style.padding = "0px";
 }

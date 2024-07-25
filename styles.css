@@ -58,7 +58,7 @@ html {
   background-color: #32e0c4;
   font-size: 15px;
   font-weight: bold;
-  border:none;
+  border: none;
 }
 
 .input-file {
@@ -83,7 +83,7 @@ html {
   margin-top: 20px;
 }
 
-.goto-button{
+.goto-button {
   background-color: var(--new-black);
   border-radius: 5px;
   border: 2px solid var(--light-orange);
