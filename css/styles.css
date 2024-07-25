@@ -1,37 +1,4 @@
-:root {
-  --new-black: #1f2833; /* Dark blueish black */
-  --light-orange: #66ffcc; /* Turquoise */
-  --new-white: #eef5db; /* Pale greenish white */
-  --light-brown: #9a8c98; /* Dusty lavender */
-  --background-color: #e0e0e0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-html {
-  background-color: var(--background-color);
-  height: 100%;
-  font-family: monospace;
-}
-
-.page-container {
-  text-align: center;
-  padding: 5%;
-}
-
-.csv-input-div {
-  margin: 20px auto;
-  font-size: large;
-  font-weight: bold;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 5px;
-}
+@import url("./header.css");
 
 .upload-csv-div {
   background-color: var(--new-black);
@@ -41,11 +8,16 @@ html {
   padding: 10px;
 }
 
-.title-header {
-  font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
-  font-size: 2.3rem;
+.warning-popup {
+  position: absolute;
+  top: 50%;
+  border-radius: 20px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: #32e0c4;
+  font-size: 15px;
   font-weight: bold;
-  color: var(--new-black);
+  border: none;
 }
 
 .input-file {
@@ -70,9 +42,28 @@ html {
   margin-top: 20px;
 }
 
+.goto-button {
+  background-color: var(--new-black);
+  border-radius: 5px;
+  border: 2px solid var(--light-orange);
+  width: 50%;
+  color: var(--light-orange);
+  max-width: 200px;
+  height: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .submit-csv-button:hover {
   background-color: var(--new-white);
   border: 1px solid var(--light-orange);
+}
+
+.goto-button:hover {
+  background-color: var(--new-white);
+  border: 3px solid var(--new-black);
+  color: var(--new-black);
 }
 
 .csv-type-select {
@@ -88,9 +79,15 @@ html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.todo-header {
-  width: 100%;
-  background-color: var(--new-black);
-  color: var(--light-orange);
-  padding: 2%;
+.close-btn {
+  width: 90px;
+  margin-top: 5px;
+  background-color: red;
+  color: #32e0c4;
+  font-weight: bold;
+  border: 1px solid red;
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
 }

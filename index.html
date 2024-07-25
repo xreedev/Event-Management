@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Event Manager</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <div class="todo-header">
@@ -10,7 +10,7 @@
     </div>
     <div class="page-container">
       <div class="title-header">UPLOAD CSV</div>
-      <div class="csv-input-div">
+      <div class="contents-div" id="csv-input-div">
         <div class="upload-csv-div">
           <label for="csv-type-select" class="csv-type-label"
             >Select the type of CSV and upload</label
@@ -35,8 +35,14 @@
             onclick="submitCsv()"
           />
         </div>
+        <div class="goto-page">
+          <a href="events.html"><button class="goto-button">Events</button></a>
+        </div>
+      </div>
+      <div class="warning-popup" id="warning-popup">
+        <div id="warning-msg"></div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
