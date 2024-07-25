@@ -17,14 +17,12 @@ class Task {
 function submitCsv() {
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
-  localStorage.setItem("csvFile", csvFile);
-  console.log(csvFile);
   if (csvFile == "" || csvFile == null) {
-    alert("Please select a CSV file.");
+    setWarningPopup("Please select a CSV file.");
     return;
   } else {
     if (!csvFile["name"].toLowerCase().endsWith(".csv")) {
-      alert("Please select a file with a .csv extension.");
+      setWarningPopup("Please select a file with a .csv extension.");
       document.getElementById("input-file").value = "";
       return;
     }
@@ -37,11 +35,11 @@ function submitCsv() {
       const contents = e.target.result;
       if (csvType == "events") {
         if (parseToEvent(contents)) {
-          alert("Events added successfully");
+          setWarningPopup("Events added successfully");
         }
       } else {
         if (parseToTask(contents)) {
-          alert("Tasks added successfully");
+          setWarningPopup("Tasks added successfully");
         }
       }
     };
@@ -53,24 +51,26 @@ function submitCsv() {
 function parseToEvent(contents) {
   let eventList = [];
   const rows = contents.split("\n");
-  const header = rows[0];
+  const header = rows.shift();
+
   if (validateHeader(header, "events")) {
     return false;
   }
+  
   rows.forEach((row) => {
+    if((row.trim())!==""){
     const columns = row.split(",");
     const event = new Event(columns[0], columns[1], columns[2], columns[3]);
     eventList.push(event);
-  });
-  console.log(eventList);
-  localStorage.setItem("events", eventList);
+  }});
+  localStorage.setItem("events", JSON.stringify(eventList));
   return eventList;
 }
 
 function parseToTask(contents) {
   let taskList = [];
   const rows = contents.split("\n");
-  const header = rows[0];
+  const header = rows.shift();
   if (validateHeader(header, "tasks")) {
     return false;
   }
@@ -79,26 +79,42 @@ function parseToTask(contents) {
     const event = new Task(columns[0], columns[1]);
     taskList.push(event);
   });
-  console.log(taskList);
-  localStorage.setItem("tasks", taskList);
+  localStorage.setItem("tasks", JSON.stringify(taskList));
   return taskList;
 }
 
 function validateHeader(header, type) {
-  console.log(header);
   if (type == "events") {
-    if (header.trim() == "eventid,eventname,start_date,end_date") {
-      alert("Correct row");
-    } else {
-      alert("Incorrect event headers");
+    if (!(header.trim() == "eventid,eventname,start_date,end_date")) {
+      setWarningPopup("Incorrect event headers");
+      document.getElementById("input-file").value = "";
       return true;
-    }
+    } 
   } else if (type == "tasks") {
-    if (header.trim() == "eventid,task_name") {
-      alert("Correct row");
-    } else {
-      alert("Incorrect task headers");
+    if (!(header.trim() == "eventid,task_name")) {
+      setWarningPopup("Incorrect task headers");
+      document.getElementById("input-file").value = "";
       return true;
     }
   }
+}
+
+function setWarningPopup(msg) {
+  document.getElementById("warning-msg").innerText = "MESSAGE\n" + msg;
+  document.getElementById("warning-popup").style.padding = "20px";
+  let closeButton = document.createElement("input");
+  closeButton.className = "close-btn";
+  closeButton.id = "close";
+  closeButton.value = "CLOSE";
+  closeButton.addEventListener("click", reverseInvoice);
+  document.getElementById("warning-popup").appendChild(closeButton);
+  document.getElementById("warning-popup").style.border="2px solid black";
+  document.getElementById("csv-input-div").style.opacity = "10%";
+}
+function reverseInvoice() {
+  document.getElementById("warning-msg").innerText = "";
+  document.getElementById("close").remove();
+  document.getElementById("warning-popup").style.border="none";
+  document.getElementById("csv-input-div").style.opacity = "100%";
+  document.getElementById("warning-popup").style.padding = "0px";
 }
