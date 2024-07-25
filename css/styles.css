@@ -1,29 +1,4 @@
-:root {
-  --new-black: #1f2833; /* Dark blueish black */
-  --light-orange: #66ffcc; /* Turquoise */
-  --new-white: #eef5db; /* Pale greenish white */
-  --light-brown: #9a8c98; /* Dusty lavender */
-  --background-color: #e0e0e0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-html {
-  background-color: var(--background-color);
-  height: 100%;
-  font-family: monospace;
-}
-
-.page-container {
-  text-align: center;
-  padding: 5%;
-  position: relative;
-}
+@import url("./header.css");
 
 .csv-input-div {
   margin: 20px auto;
@@ -40,13 +15,6 @@ html {
   border: 5px solid var(--light-orange);
   color: var(--light-brown);
   padding: 10px;
-}
-
-.title-header {
-  font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
-  font-size: 2.3rem;
-  font-weight: bold;
-  color: var(--new-black);
 }
 
 .warning-popup {
@@ -118,13 +86,6 @@ html {
   font-size: 15px;
   color: #e0e0e0;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.todo-header {
-  width: 100%;
-  background-color: var(--new-black);
-  color: var(--light-orange);
-  padding: 2%;
 }
 
 .close-btn {
