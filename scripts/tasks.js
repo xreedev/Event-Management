@@ -53,8 +53,8 @@ function createStatusSelect() {
   progressOption.value = "In Progress";
 
   let startedOption = document.createElement("option");
-  startedOption.textContent = "Started";
-  startedOption.value = "Started";
+  startedOption.textContent = "Complete";
+  startedOption.value = "Complete";
 
   statusSelect.appendChild(notStartedOption);
   statusSelect.appendChild(progressOption);
@@ -75,6 +75,7 @@ function confirmStatus() {
 
   let statusListJson = JSON.stringify(statusList);
   localStorage.setItem("task-status-" + requiredEvent, statusListJson);
+  window.location.href="./events.html";
 }
 function updateStatus() {
   let statusListJson = localStorage.getItem("task-status-" + requiredEvent);
