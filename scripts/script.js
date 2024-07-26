@@ -51,7 +51,7 @@ function submitCsv() {
 }
 
 function parseToEvent(contents) {
-  let eventList = [];
+  let eventList = JSON.parse(localStorage.getItem("events")) || [];
   const rows = contents.split("\n");
   const header = rows.shift();
 
@@ -59,26 +59,46 @@ function parseToEvent(contents) {
     return false;
   }
 
-  rows.forEach((row) => {
+  for (let row of rows) {
     if (row.trim() !== "") {
       const columns = row.split(",");
-      if(isValidDate(columns[2]) && isValidDate(columns[3]) ){
-        const event = new Event(columns[0], columns[1], columns[2], columns[3]);
-        eventList.push(event);
-      }
-      else{
-        dateError=1;
-      }
+      if (isValidDate(columns[2]) && isValidDate(columns[3])) {
+        const newEventStart = new Date(columns[2]);
+        const newEventEnd = new Date(columns[3]);
 
+        // Check for date range overlaps
+        let overlapFound = false;
+        for (const event of eventList) {
+          const existingEventStart = new Date(event.startDate);
+          const existingEventEnd = new Date(event.endDate);
+          if (dateRangeOverlaps(existingEventStart, existingEventEnd, newEventStart, newEventEnd)) {
+            overlapFound = true;
+            break;
+          }
+        }
+
+        if (!overlapFound) {
+          const event = new Event(columns[0], columns[1], columns[2], columns[3]);
+          eventList.push(event);
+        } else {
+          dateError = 1;
+          setWarningPopup("There are overlapping events. Please check CSV.");
+          break;
+        }
+      } else {
+        dateError = 1;
+        setWarningPopup("Invalid dates were found. Check date format and value.");
+        break;
+      }
     }
-  });
-  localStorage.setItem("events", JSON.stringify(eventList));
-  if(dateError==1){
-    setWarningPopup("Invalid dates were found \n Check date format and value");
-    return false;
   }
-  return eventList;
+
+  if (dateError == 0) {
+    localStorage.setItem("events", JSON.stringify(eventList));
+  }
+  return dateError == 0 ? eventList : false;
 }
+
 
 function parseToTask(contents) {
   let taskList = [];
@@ -141,4 +161,8 @@ function reverseInvoice() {
 // Function for validation of date format
 function isValidDate(stringDate) {
   return !isNaN(Date.parse(stringDate));
+}
+
+function dateRangeOverlaps(a_start, a_end, b_start, b_end) {
+  return (a_start <= b_end && b_start <= a_end);
 }

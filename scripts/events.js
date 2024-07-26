@@ -12,6 +12,7 @@ events.forEach((element) => {
 
   eventsTable.appendChild(eventColumn);
   updateProgress(eventId);
+  checkFailure(startDate,eventId);
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -76,4 +77,17 @@ function updateProgress(eventId) {
       progressRow.textContent="Complete";
     }
   }
+}
+
+function checkFailure(startDateStr,eventId)
+{
+  let progressRow = document.getElementById("progress-" + eventId);
+  let startDate=new Date(startDateStr);
+  const todayDate=new Date();
+  if(startDate<todayDate){
+    console.log(todayDate)
+   progressRow.textContent="Failed";
+   progressRow.id="";
+  }
+
 }
