@@ -42,7 +42,7 @@ html {
   width: 100%;
   background-color: var(--primary-color);
   color: var(--background-color);
-  padding: 2%;
+  padding: 1%;
 }
 
 .contents-div {

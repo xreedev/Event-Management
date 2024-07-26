@@ -15,13 +15,11 @@ class Task {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  localStorage.clear();
-  console.log("Loaded");
-  dateError = 0;
-  eventIdArray = [];
+  localStorage.clear(); 
 });
 
 function submitCsv() {
+  eventIdArray = []; // Clear event IDs array
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
 
@@ -59,7 +57,7 @@ function submitCsv() {
 }
 
 function parseToEvent(contents) {
-  let eventList = JSON.parse(localStorage.getItem("events")) || [];
+  let eventList = [];
   const rows = contents.split("\n");
   const header = rows.shift();
 
@@ -126,10 +124,9 @@ function parseToEvent(contents) {
     }
   }
 
-  if (dateError == 0) {
-    localStorage.setItem("events", JSON.stringify(eventList));
-  }
-  return dateError == 0 ? eventList : false;
+  // Save events to localStorage, overwriting existing data
+  localStorage.setItem("events", JSON.stringify(eventList));
+  return eventList.length > 0;
 }
 
 function parseToTask(contents) {
@@ -154,7 +151,6 @@ function parseToTask(contents) {
     const taskName = columns[1];
 
     if (!eventIdArray.includes(eventId)) {
-      console.log("Event id in task does not exist");
       setWarningPopup("Event ID in task does not exist");
       return false;
     }
@@ -163,6 +159,7 @@ function parseToTask(contents) {
     taskList.push(task);
   }
 
+  // Save tasks to localStorage, overwriting existing data
   localStorage.setItem("tasks", JSON.stringify(taskList));
   return true;
 }
@@ -218,8 +215,14 @@ function dateRangeOverlaps(a_start, a_end, b_start, b_end) {
 }
 
 function checkStartAndEnd(start_date, end_date) {
-  if (start_date > end_date) {
-    return false;
+  return start_date <= end_date;
+}
+
+function goToEvent() {
+  if (eventIdArray.length === 0) {
+    setWarningPopup("No events added");
+    return;
+  } else {
+    window.location.href = "./events.html";
   }
-  return true;
 }
