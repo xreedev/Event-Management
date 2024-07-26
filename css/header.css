@@ -44,7 +44,7 @@ html {
   font-size: large;
   font-weight: bold;
   width: 80%;
-  max-width: 600px;
+  /* max-width: 600px; */
   border-radius: 5px;
 }
 

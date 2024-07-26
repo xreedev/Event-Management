@@ -1,21 +1,24 @@
+class Event {
+  constructor(eventId, eventName, startDate, endDate) {
+    this.eventName = eventName;
+    this.eventId = eventId;
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
+}
+
+class Task {
+  constructor(eventId, taskName) {
+    this.eventId = eventId;
+    this.taskName = taskName;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   localStorage.clear();
-  class Event {
-    constructor(eventId, eventName, startDate, endDate) {
-      this.eventName = eventName;
-      this.eventId = eventId;
-      this.startDate = startDate;
-      this.endDate = endDate;
-    }
-  }
-
-  class Task {
-    constructor(eventId, taskName) {
-      this.eventId = eventId;
-      this.taskName = taskName;
-    }
-  }
+  console.log("Loaded");
   dateError = 0;
+  eventIdArray = [];
 });
 
 function submitCsv() {
@@ -47,6 +50,7 @@ function submitCsv() {
         }
       }
     };
+    console.log(eventIdArray);
 
     reader.readAsText(csvFile);
   }
@@ -85,7 +89,14 @@ function parseToEvent(contents) {
             break;
           }
         }
-
+        if (eventIdArray.includes(columns[0])) {
+          setWarningPopup("Multiple events with same id detected");
+          return;
+        }
+        if (!checkStartAndEnd(columns[2], columns[3])) {
+          setWarningPopup("Some events have wrong start and end date");
+          return;
+        }
         if (!overlapFound) {
           const event = new Event(
             columns[0],
@@ -93,6 +104,7 @@ function parseToEvent(contents) {
             columns[2],
             columns[3]
           );
+          eventIdArray.push(columns[0]);
           eventList.push(event);
         } else {
           dateError = 1;
@@ -180,4 +192,11 @@ function isValidDate(stringDate) {
 
 function dateRangeOverlaps(a_start, a_end, b_start, b_end) {
   return a_start <= b_end && b_start <= a_end;
+}
+
+function checkStartAndEnd(start_date, end_date) {
+  if (start_date > end_date) {
+    return false;
+  }
+  return true;
 }
