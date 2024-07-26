@@ -1,10 +1,10 @@
 @import url("./header.css");
 
 .upload-csv-div {
-  background-color: var(--new-black);
+  background-color: var(--primary-color); /* Updated from var(--new-black) */
   border-radius: 10px;
-  border: 5px solid var(--light-orange);
-  color: var(--light-brown);
+  border: 5px solid var(--secondary-color); /* Updated from var(--light-orange) */
+  color: var(--highlight-color); /* Updated from var(--light-brown) */
   padding: 10px;
 }
 
@@ -14,27 +14,31 @@
   border-radius: 20px;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #32e0c4;
+  background-color: var(--highlight-color); /* Updated from #32e0c4 */
   font-size: 15px;
   font-weight: bold;
   border: none;
 }
 
+.contents-div {
+  max-width: 600px;
+}
+
 .input-file {
-  background-color: var(--new-black);
+  background-color: var(--background-color); /* Updated from var(--new-black) */
   margin: 5% auto;
-  border: 1px solid var(--light-brown);
+  border: 1px solid var(--text-color); /* Updated from var(--light-brown) */
   padding: 8% 5%;
   width: 90%;
   max-width: 400px;
-  color: var(--new-white);
+  color: var(--text-color); /* Updated from var(--new-white) */
   cursor: pointer;
 }
 
 .submit-csv-button {
-  background-color: var(--light-orange);
+  background-color: var(--highlight-color); /* Updated from var(--light-orange) */
   border-radius: 20px;
-  border: 1px solid var(--new-white);
+  border: 1px solid var(--border-color); /* Updated from var(--new-white) */
   width: 50%;
   max-width: 200px;
   height: 30px;
@@ -43,11 +47,11 @@
 }
 
 .goto-button {
-  background-color: var(--new-black);
+  background-color: var(--primary-color); /* Updated from var(--new-black) */
   border-radius: 5px;
-  border: 2px solid var(--light-orange);
+  border: 2px solid var(--border-color); /* Updated from var(--light-orange) */
   width: 50%;
-  color: var(--light-orange);
+  color: var(--background-color); /* Updated from var(--light-orange) */
   max-width: 200px;
   height: 35px;
   font-weight: bold;
@@ -56,14 +60,14 @@
 }
 
 .submit-csv-button:hover {
-  background-color: var(--new-white);
-  border: 1px solid var(--light-orange);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color); /* Updated from var(--light-orange) */
 }
 
 .goto-button:hover {
   background-color: var(--new-white);
-  border: 3px solid var(--new-black);
-  color: var(--new-black);
+  border: 3px solid var(--primary-color); /* Updated from var(--new-black) */
+  color: var(--primary-color); /* Updated from var(--new-black) */
 }
 
 .csv-type-select {
@@ -75,17 +79,18 @@
 
 .csv-type-label {
   font-size: 15px;
-  color: #e0e0e0;
+  color: var(--background-color); /* Updated from #e0e0e0 */
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .close-btn {
   width: 90px;
   margin-top: 5px;
-  background-color: red;
-  color: #32e0c4;
+  background-color: var(--background-color); /* Updated from red */
+  color: var(--text-color); /* Updated from #32e0c4 */
   font-weight: bold;
-  border: 1px solid red;
+  font-size: 10px;
+  border: 1px solid var(--text-color); /* Updated from red */
   border-radius: 20px;
   padding: 5px;
   text-align: center;

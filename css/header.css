@@ -1,10 +1,12 @@
 :root {
-  --new-black: #1f2833; /* Dark blueish black */
-  --light-orange: #66ffcc; /* Turquoise */
-  --new-white: #eef5db; /* Pale greenish white */
-  --light-brown: #9a8c98; /* Dusty lavender */
-  --background-color: #e0e0e0;
+  --primary-color: #28a745; /* Fresh green for primary actions */
+  --secondary-color: #44e6ff; /* Vibrant teal for secondary actions */
+  --background-color: #ffffff; /* Very light gray for background */
+  --text-color: #343a40; /* Dark gray for text */
+  --border-color: #ced4da; /* Light gray for borders */
+  --highlight-color: #ffc107; /* Bright yellow for highlights and alerts */
 }
+
 
 * {
   margin: 0;
@@ -29,13 +31,13 @@ html {
   font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
   font-size: 2.3rem;
   font-weight: bold;
-  color: var(--new-black);
+  color: var(--text-color);
 }
 
 .todo-header {
   width: 100%;
-  background-color: var(--new-black);
-  color: var(--light-orange);
+  background-color: var(--primary-color);
+  color: var(--background-color);
   padding: 2%;
 }
 
@@ -54,7 +56,7 @@ html {
   border-radius: 20px;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #32e0c4;
+  background-color: var(--highlight-color);
   font-size: 15px;
   font-weight: bold;
   border: none;

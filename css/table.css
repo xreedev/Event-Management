@@ -1,28 +1,46 @@
-/* code pen table */
+:root {
+  --primary-color: #28a745; /* Fresh green for primary actions */
+  --secondary-color: #17a2b8; /* Vibrant teal for secondary actions */
+  --background-color: #f8f9fa; /* Very light gray for background */
+  --text-color: #343a40; /* Dark gray for text */
+  --border-color: #ced4da; /* Light gray for borders */
+  --highlight-color: #ffc107; /* Bright yellow for highlights and alerts */
+}
+
+
+/* Define table styles */
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
+/* Define table cell and header styles */
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: center;
   padding: 6px 20px;
-}
-tr th {
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 6px 20px;
-  background-color: #ad1e23;
-  color: #fff;
 }
 
+/* Define table header styles */
+tr th {
+  text-align: center;
+  padding: 6px 20px;
+  background-color: var(--primary-color);
+  color: var(--new-white);
+}
+
+/* Define table row styles */
+tr {
+  border: 2px solid var(--border-color);
+}
+
+/* Define table row hover styles */
 tr:hover {
-  background-color: #dddddd;
+  background-color: var(--highlight-color);
   cursor: pointer;
 }
 
+/* Define content-specific cell and header styles */
 .content td,
 .content th {
   border-top: 1px solid transparent;
