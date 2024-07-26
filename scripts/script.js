@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function submitCsv() {
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
-  
+
   if (!csvFile) {
     setWarningPopup("Please select a CSV file.");
     return;
@@ -58,7 +58,6 @@ function submitCsv() {
   reader.readAsText(csvFile);
 }
 
-
 function parseToEvent(contents) {
   let eventList = JSON.parse(localStorage.getItem("events")) || [];
   const rows = contents.split("\n");
@@ -72,18 +71,15 @@ function parseToEvent(contents) {
     if (row.trim() !== "") {
       const columns = row.split(",");
 
-      // Check if any column is empty
-      if (columns.some(column => column.trim() === "")) {
+      if (columns.some((column) => column.trim() === "")) {
         setWarningPopup("There are null values in file");
         return false;
       }
 
-      // Validate dates
       if (isValidDate(columns[2]) && isValidDate(columns[3])) {
         const newEventStart = new Date(columns[2]);
         const newEventEnd = new Date(columns[3]);
 
-        // Check for date range overlaps
         let overlapFound = false;
         for (const event of eventList) {
           const existingEventStart = new Date(event.startDate);
@@ -146,15 +142,14 @@ function parseToTask(contents) {
   }
 
   for (let row of rows) {
-
-    if (row.trim() === "") continue; 
+    if (row.trim() === "") continue;
 
     const columns = row.split(",");
-    if (columns.some(column => column.trim() === "")) {
+    if (columns.some((column) => column.trim() === "")) {
       setWarningPopup("There are null values in file");
       return false;
     }
-  
+
     const eventId = columns[0];
     const taskName = columns[1];
 
@@ -171,7 +166,6 @@ function parseToTask(contents) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
   return true;
 }
-
 
 function validateHeader(header, type) {
   if (type == "events") {
@@ -215,7 +209,6 @@ function reverseInvoice() {
   document.getElementById("warning-popup").style.padding = "0px";
 }
 
-// Function for validation of date format
 function isValidDate(stringDate) {
   return !isNaN(Date.parse(stringDate));
 }

@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #0077B6; /* Fresh green for primary actions */
-  --secondary-color: #00B4D8; /* Vibrant teal for secondary actions */
-  --background-color: #CAF0F8; /* Very light gray for background */
-  --text-color: #03045E; /* Dark gray for text */
-  --border-color: #90E0EF; /* Light gray for borders */
+  --primary-color: #0077b6; /* Fresh green for primary actions */
+  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
+  --background-color: #caf0f8; /* Very light gray for background */
+  --text-color: #03045e; /* Dark gray for text */
+  --border-color: #90e0ef; /* Light gray for borders */
   --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 

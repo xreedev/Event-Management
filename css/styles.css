@@ -1,11 +1,10 @@
 @import url("./header.css");
 :root {
-
-  --primary-color: #03045E; /* Fresh green for primary actions */
-  --secondary-color: #00B4D8; /* Vibrant teal for secondary actions */
+  --primary-color: #03045e; /* Fresh green for primary actions */
+  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
   --background-color: #ffffff; /* Very light gray for background */
-  --text-color: #0077B6; /* Dark gray for text */
-  --border-color: #90E0EF; /* Light gray for borders */
+  --text-color: #0077b6; /* Dark gray for text */
+  --border-color: #90e0ef; /* Light gray for borders */
   --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 .upload-csv-div {
