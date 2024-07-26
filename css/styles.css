@@ -47,11 +47,11 @@
 }
 
 .goto-button {
-  background-color: var(--primary-color); /* Updated from var(--new-black) */
+  background-color: var(--highlight-color); /* Updated from var(--new-black) */
   border-radius: 5px;
-  border: 2px solid var(--border-color); /* Updated from var(--light-orange) */
+  border: 2px solid var(--text-color); /* Updated from var(--light-orange) */
   width: 50%;
-  color: var(--background-color); /* Updated from var(--light-orange) */
+  color: var(--text-color); /* Updated from var(--light-orange) */
   max-width: 200px;
   height: 35px;
   font-weight: bold;
@@ -65,9 +65,7 @@
 }
 
 .goto-button:hover {
-  background-color: var(--new-white);
-  border: 3px solid var(--primary-color); /* Updated from var(--new-black) */
-  color: var(--primary-color); /* Updated from var(--new-black) */
+  background-color: var(--background-color); /* Updated from var(--new-black) */ /* Updated from var(--new-black) */
 }
 
 .csv-type-select {
