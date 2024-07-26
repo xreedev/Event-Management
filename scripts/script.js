@@ -14,6 +14,7 @@ class Task {
     this.taskName = taskName;
   }
 }
+dateError=0;
 
 function submitCsv() {
   let csvType = document.getElementById("csv-type-select").value;
@@ -57,7 +58,7 @@ function parseToEvent(contents) {
   if (validateHeader(header, "events")) {
     return false;
   }
-  let dateError=0;
+
   rows.forEach((row) => {
     if (row.trim() !== "") {
       const columns = row.split(",");
