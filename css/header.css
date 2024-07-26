@@ -1,10 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 :root {
-  --primary-color: #28a745; /* Fresh green for primary actions */
-  --secondary-color: #44e6ff; /* Vibrant teal for secondary actions */
+
+  --primary-color: #03045E; /* Fresh green for primary actions */
+  --secondary-color: #00B4D8; /* Vibrant teal for secondary actions */
   --background-color: #ffffff; /* Very light gray for background */
-  --text-color: #343a40; /* Dark gray for text */
-  --border-color: #ced4da; /* Light gray for borders */
-  --highlight-color: #ffc107; /* Bright yellow for highlights and alerts */
+  --text-color: #0077B6; /* Dark gray for text */
+  --border-color: #90E0EF; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 
 a {
@@ -19,20 +22,20 @@ a {
 
 body,
 html {
-  background-color: var(--background-color);
   height: 100%;
-  font-family: monospace;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .page-container {
+  background-color:#ffffff;
   text-align: center;
   padding: 1%;
   position: relative;
 }
 
 .title-header {
-  font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
-  font-size: 2.3rem;
+  font-family:monospace;
+  font-size: 2rem;
   font-weight: bold;
   color: var(--text-color);
 }

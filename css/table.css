@@ -1,14 +1,15 @@
 :root {
-  --primary-color: #28a745; /* Fresh green for primary actions */
-  --secondary-color: #17a2b8; /* Vibrant teal for secondary actions */
-  --background-color: #f8f9fa; /* Very light gray for background */
-  --text-color: #343a40; /* Dark gray for text */
-  --border-color: #ced4da; /* Light gray for borders */
-  --highlight-color: #ffc107; /* Bright yellow for highlights and alerts */
+  --primary-color: #0077B6; /* Fresh green for primary actions */
+  --secondary-color: #00B4D8; /* Vibrant teal for secondary actions */
+  --background-color: #CAF0F8; /* Very light gray for background */
+  --text-color: #03045E; /* Dark gray for text */
+  --border-color: #90E0EF; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 
 /* Define table styles */
 table {
+  border: 1px solid black;
   border-collapse: collapse;
   width: 100%;
 }
@@ -23,9 +24,10 @@ th {
 /* Define table header styles */
 tr th {
   text-align: center;
+  font-weight: bold;
   padding: 6px 20px;
   background-color: var(--primary-color);
-  color: var(--new-white);
+  color: var(--background-color);
 }
 
 /* Define table row styles */
@@ -42,6 +44,7 @@ tr:hover {
 /* Define content-specific cell and header styles */
 .content td,
 .content th {
+  border-radius: 20px;
   border-top: 1px solid transparent;
   padding: 2px 10px 2px 15px;
 }

@@ -24,37 +24,40 @@ document.addEventListener("DOMContentLoaded", function () {
 function submitCsv() {
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
-  if (csvFile == "" || csvFile == null) {
+  
+  if (!csvFile) {
     setWarningPopup("Please select a CSV file.");
     return;
-  } else {
-    if (!csvFile["name"].toLowerCase().endsWith(".csv")) {
-      setWarningPopup("Please select a file with a .csv extension.");
-      document.getElementById("input-file").value = "";
-      return;
-    }
   }
 
-  if (csvFile) {
-    const reader = new FileReader();
+  if (!csvFile.name.toLowerCase().endsWith(".csv")) {
+    setWarningPopup("Please select a file with a .csv extension.");
+    document.getElementById("input-file").value = "";
+    return;
+  }
 
-    reader.onload = function (e) {
-      const contents = e.target.result;
-      if (csvType == "events") {
-        if (parseToEvent(contents) && dateError == 0) {
-          setWarningPopup("Events added successfully");
-        }
-      } else {
-        if (parseToTask(contents)) {
-          setWarningPopup("Tasks added successfully");
-        }
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    const contents = e.target.result;
+    let success = false;
+
+    if (csvType === "events") {
+      success = parseToEvent(contents);
+      if (success) {
+        setWarningPopup("Events added successfully");
       }
-    };
-    console.log(eventIdArray);
+    } else if (csvType === "tasks") {
+      success = parseToTask(contents);
+      if (success) {
+        setWarningPopup("Tasks added successfully");
+      }
+    }
+  };
 
-    reader.readAsText(csvFile);
-  }
+  reader.readAsText(csvFile);
 }
+
 
 function parseToEvent(contents) {
   let eventList = JSON.parse(localStorage.getItem("events")) || [];
@@ -68,6 +71,14 @@ function parseToEvent(contents) {
   for (let row of rows) {
     if (row.trim() !== "") {
       const columns = row.split(",");
+
+      // Check if any column is empty
+      if (columns.some(column => column.trim() === "")) {
+        setWarningPopup("There are null values in file");
+        return false;
+      }
+
+      // Validate dates
       if (isValidDate(columns[2]) && isValidDate(columns[3])) {
         const newEventStart = new Date(columns[2]);
         const newEventEnd = new Date(columns[3]);
@@ -89,14 +100,12 @@ function parseToEvent(contents) {
             break;
           }
         }
-        if (eventIdArray.includes(columns[0])) {
-          setWarningPopup("Multiple events with same id detected");
-          return;
-        }
+
         if (!checkStartAndEnd(columns[2], columns[3])) {
           setWarningPopup("Some events have wrong start and end date");
-          return;
+          return false;
         }
+
         if (!overlapFound) {
           const event = new Event(
             columns[0],
@@ -109,14 +118,14 @@ function parseToEvent(contents) {
         } else {
           dateError = 1;
           setWarningPopup("There are overlapping events. Please check CSV.");
-          break;
+          return false;
         }
       } else {
         dateError = 1;
         setWarningPopup(
           "Invalid dates were found. Check date format and value."
         );
-        break;
+        return false;
       }
     }
   }
@@ -131,17 +140,38 @@ function parseToTask(contents) {
   let taskList = [];
   const rows = contents.split("\n");
   const header = rows.shift();
+
   if (validateHeader(header, "tasks")) {
     return false;
   }
-  rows.forEach((row) => {
+
+  for (let row of rows) {
+
+    if (row.trim() === "") continue; 
+
     const columns = row.split(",");
-    const event = new Task(columns[0], columns[1]);
-    taskList.push(event);
-  });
+    if (columns.some(column => column.trim() === "")) {
+      setWarningPopup("There are null values in file");
+      return false;
+    }
+  
+    const eventId = columns[0];
+    const taskName = columns[1];
+
+    if (!eventIdArray.includes(eventId)) {
+      console.log("Event id in task does not exist");
+      setWarningPopup("Event ID in task does not exist");
+      return false;
+    }
+
+    const task = new Task(eventId, taskName);
+    taskList.push(task);
+  }
+
   localStorage.setItem("tasks", JSON.stringify(taskList));
-  return taskList;
+  return true;
 }
+
 
 function validateHeader(header, type) {
   if (type == "events") {

@@ -1,6 +1,24 @@
 @import url("./header.css");
 @import url("./table.css");
+:root {
 
+  --primary-color: #03045E; /* Fresh green for primary actions */
+  --secondary-color: #00B4D8; /* Vibrant teal for secondary actions */
+  --background-color: #ffffff; /* Very light gray for background */
+  --text-color: #0077B6; /* Dark gray for text */
+  --border-color: #90E0EF; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
+}
 .events-container {
   width: 100%;
+
+}
+
+.action-button
+{
+  width: 100px;
+  height: 25px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: var(--background-color);
 }
