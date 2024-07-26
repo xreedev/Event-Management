@@ -7,8 +7,10 @@
   --highlight-color: #ffc107; /* Bright yellow for highlights and alerts */
 }
 
-a { color: inherit; 
-text-decoration: none;}
+a {
+  color: inherit;
+  text-decoration: none;
+}
 * {
   margin: 0;
   padding: 0;

@@ -12,9 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let eventColumn = createRow(eventId, eventName, startDate, endDate);
 
     eventsTable.appendChild(eventColumn);
-if(!(localStorage.getItem("task-status-" + eventId))){
-  localStorage.setItem("task-status-" + eventId, JSON.stringify(["Not Started", "Not Started", "Not Started"]));
-}
+    if (!localStorage.getItem("task-status-" + eventId)) {
+      localStorage.setItem(
+        "task-status-" + eventId,
+        JSON.stringify(["Not Started", "Not Started", "Not Started"])
+      );
+    }
 
     updateProgress(eventId);
     checkFailure(startDate, eventId);
@@ -93,5 +96,4 @@ function checkFailure(startDateStr, eventId) {
     progressRow.textContent = "Failed";
     progressRow.id = "";
   }
-  
 }
