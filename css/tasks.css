@@ -1,11 +1,18 @@
-@import url('./header.css');
-@import url('./table.css');
-
-.confirm-button{
-    width: 100px;
-    height: 20px;
-    border-radius: 20px;
-    background-color: black;
-    color: azure;
-    margin-top: 50px;
+@import url("./header.css");
+@import url("./table.css");
+:root {
+  --primary-color: #03045e; /* Fresh green for primary actions */
+  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
+  --background-color: #ffffff; /* Very light gray for background */
+  --text-color: #0077b6; /* Dark gray for text */
+  --border-color: #90e0ef; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
+}
+.confirm-button {
+  width: 100px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: azure;
+  margin-top: 50px;
 }

@@ -1,11 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 :root {
-  --new-black: #1f2833; /* Dark blueish black */
-  --light-orange: #66ffcc; /* Turquoise */
-  --new-white: #eef5db; /* Pale greenish white */
-  --light-brown: #9a8c98; /* Dusty lavender */
-  --background-color: #e0e0e0;
+  --primary-color: #03045e; /* Fresh green for primary actions */
+  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
+  --background-color: #ffffff; /* Very light gray for background */
+  --text-color: #0077b6; /* Dark gray for text */
+  --border-color: #90e0ef; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
 * {
   margin: 0;
   padding: 0;
@@ -14,28 +20,28 @@
 
 body,
 html {
-  background-color: var(--background-color);
   height: 100%;
-  font-family: monospace;
+  font-family: "Open Sans", sans-serif;
 }
 
 .page-container {
+  background-color: #ffffff;
   text-align: center;
   padding: 1%;
   position: relative;
 }
 
 .title-header {
-  font-family: Georgia, "Times New Roman", Times, serif, Courier, monospace;
-  font-size: 2.3rem;
+  font-family: monospace;
+  font-size: 2rem;
   font-weight: bold;
-  color: var(--new-black);
+  color: var(--text-color);
 }
 
 .todo-header {
   width: 100%;
-  background-color: var(--new-black);
-  color: var(--light-orange);
+  background-color: var(--primary-color);
+  color: var(--background-color);
   padding: 2%;
 }
 
@@ -44,7 +50,7 @@ html {
   font-size: large;
   font-weight: bold;
   width: 80%;
-  max-width: 600px;
+  /* max-width: 600px; */
   border-radius: 5px;
 }
 
@@ -54,7 +60,7 @@ html {
   border-radius: 20px;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: #32e0c4;
+  background-color: var(--highlight-color);
   font-size: 15px;
   font-weight: bold;
   border: none;

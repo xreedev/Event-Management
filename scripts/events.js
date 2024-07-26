@@ -1,17 +1,27 @@
-const eventJson = localStorage.getItem("events");
-let events = JSON.parse(eventJson);
-let eventsTable = document.getElementById("events-table");
+document.addEventListener("DOMContentLoaded", function () {
+  const eventJson = localStorage.getItem("events");
+  let events = JSON.parse(eventJson);
+  let eventsTable = document.getElementById("events-table");
 
-events.forEach((element) => {
-  let eventName = element["eventName"];
-  let eventId = element["eventId"];
-  let startDate = element["startDate"];
-  let endDate = element["endDate"];
- 
-  let eventColumn = createRow(eventId, eventName, startDate, endDate);
+  events.forEach((element) => {
+    let eventName = element["eventName"];
+    let eventId = element["eventId"];
+    let startDate = element["startDate"];
+    let endDate = element["endDate"];
 
-  eventsTable.appendChild(eventColumn);
-  updateProgress(eventId);
+    let eventColumn = createRow(eventId, eventName, startDate, endDate);
+
+    eventsTable.appendChild(eventColumn);
+    if (!localStorage.getItem("task-status-" + eventId)) {
+      localStorage.setItem(
+        "task-status-" + eventId,
+        JSON.stringify(["Not Started", "Not Started", "Not Started"])
+      );
+    }
+
+    updateProgress(eventId);
+    checkFailure(startDate, eventId);
+  });
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -50,6 +60,7 @@ function createAction(eventId) {
     goToTasks(eventId);
   };
   let actionButton = document.createElement("button");
+  actionButton.className = "action-button";
 
   actionButton.textContent = "TASK";
   actionAnchor.appendChild(actionButton);
@@ -69,11 +80,21 @@ function updateProgress(eventId) {
   let taskStatusesJson = localStorage.getItem("task-status-" + eventId);
   if (taskStatusesJson) {
     let taskStatuses = JSON.parse(taskStatusesJson);
-    if(taskStatuses.includes("In Progress")){
-      progressRow.textContent="In Progress";
+    if (taskStatuses.includes("In Progress")) {
+      progressRow.textContent = "In Progress";
+    } else if (taskStatuses.every((status) => status === "Complete")) {
+      progressRow.textContent = "Complete";
     }
-    else if (taskStatuses.every((status) => status === "Complete")) {
-      progressRow.textContent="Complete";
-    }
+  }
+}
+
+function checkFailure(startDateStr, eventId) {
+  let progressRow = document.getElementById("progress-" + eventId);
+  let startDate = new Date(startDateStr);
+  const todayDate = new Date();
+  if (startDate < todayDate) {
+    console.log(todayDate);
+    progressRow.textContent = "Failed";
+    progressRow.id = "";
   }
 }

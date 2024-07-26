@@ -72,10 +72,10 @@ function confirmStatus() {
     let status = select.value;
     statusList.push(status);
   });
-
   let statusListJson = JSON.stringify(statusList);
+  console.log(statusListJson);
   localStorage.setItem("task-status-" + requiredEvent, statusListJson);
-  window.location.href="./events.html";
+  window.location.href = "./events.html";
 }
 function updateStatus() {
   let statusListJson = localStorage.getItem("task-status-" + requiredEvent);
