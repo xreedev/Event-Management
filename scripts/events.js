@@ -1,18 +1,20 @@
-const eventJson = localStorage.getItem("events");
-let events = JSON.parse(eventJson);
-let eventsTable = document.getElementById("events-table");
+document.addEventListener("DOMContentLoaded", function () {
+  const eventJson = localStorage.getItem("events");
+  let events = JSON.parse(eventJson);
+  let eventsTable = document.getElementById("events-table");
 
-events.forEach((element) => {
-  let eventName = element["eventName"];
-  let eventId = element["eventId"];
-  let startDate = element["startDate"];
-  let endDate = element["endDate"];
- 
-  let eventColumn = createRow(eventId, eventName, startDate, endDate);
+  events.forEach((element) => {
+    let eventName = element["eventName"];
+    let eventId = element["eventId"];
+    let startDate = element["startDate"];
+    let endDate = element["endDate"];
 
-  eventsTable.appendChild(eventColumn);
-  updateProgress(eventId);
-  checkFailure(startDate,eventId);
+    let eventColumn = createRow(eventId, eventName, startDate, endDate);
+
+    eventsTable.appendChild(eventColumn);
+    updateProgress(eventId);
+    checkFailure(startDate, eventId);
+  });
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -70,24 +72,21 @@ function updateProgress(eventId) {
   let taskStatusesJson = localStorage.getItem("task-status-" + eventId);
   if (taskStatusesJson) {
     let taskStatuses = JSON.parse(taskStatusesJson);
-    if(taskStatuses.includes("In Progress")){
-      progressRow.textContent="In Progress";
-    }
-    else if (taskStatuses.every((status) => status === "Complete")) {
-      progressRow.textContent="Complete";
+    if (taskStatuses.includes("In Progress")) {
+      progressRow.textContent = "In Progress";
+    } else if (taskStatuses.every((status) => status === "Complete")) {
+      progressRow.textContent = "Complete";
     }
   }
 }
 
-function checkFailure(startDateStr,eventId)
-{
+function checkFailure(startDateStr, eventId) {
   let progressRow = document.getElementById("progress-" + eventId);
-  let startDate=new Date(startDateStr);
-  const todayDate=new Date();
-  if(startDate<todayDate){
-    console.log(todayDate)
-   progressRow.textContent="Failed";
-   progressRow.id="";
+  let startDate = new Date(startDateStr);
+  const todayDate = new Date();
+  if (startDate < todayDate) {
+    console.log(todayDate);
+    progressRow.textContent = "Failed";
+    progressRow.id = "";
   }
-
 }

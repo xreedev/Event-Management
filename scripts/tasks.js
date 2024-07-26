@@ -75,7 +75,7 @@ function confirmStatus() {
 
   let statusListJson = JSON.stringify(statusList);
   localStorage.setItem("task-status-" + requiredEvent, statusListJson);
-  window.location.href="./events.html";
+  window.location.href = "./events.html";
 }
 function updateStatus() {
   let statusListJson = localStorage.getItem("task-status-" + requiredEvent);
