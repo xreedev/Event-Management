@@ -26,14 +26,17 @@ html {
 
 .page-container {
   background-color: #ffffff;
-  text-align: center;
   padding: 1%;
+  vertical-align: top;
+  display: inline-block;
+  width: 60%;
   position: relative;
 }
 
 .title-header {
   font-family: monospace;
   font-size: 2rem;
+  text-align: center;
   font-weight: bold;
   color: var(--text-color);
 }
@@ -50,6 +53,7 @@ html {
   font-size: large;
   font-weight: bold;
   width: 80%;
+  text-align: center;
   /* max-width: 600px; */
   border-radius: 5px;
 }
