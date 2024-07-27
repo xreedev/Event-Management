@@ -73,7 +73,7 @@ function createAction(eventId) {
 
 function goToTasks(eventId) {
   let tasks=JSON.parse(localStorage.getItem("tasks"));
-  if(tasks.length==0){
+  if(tasks==null || tasks.length==0){
     setWarningPopup("No tasks added");
     return;
   }
