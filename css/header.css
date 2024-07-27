@@ -20,7 +20,8 @@ a {
 
 body,
 html {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -29,23 +30,24 @@ html {
   padding: 1%;
   vertical-align: top;
   display: inline-block;
-  width: 60%;
+  width: calc(100% - 505px);
   position: relative;
 }
 
 .title-header {
   font-family: monospace;
   font-size: 2rem;
-  text-align: center;
+  /* text-align: left; */
   font-weight: bold;
   color: var(--text-color);
 }
 
 .todo-header {
   width: 100%;
+  height: 60px;
   background-color: var(--primary-color);
   color: var(--background-color);
-  padding: 1%;
+  padding: 10px 0 0 20px;
 }
 
 .contents-div {

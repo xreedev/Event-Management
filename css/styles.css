@@ -105,12 +105,13 @@
 }
 
 .page-sidebar{
-  width: 25%;
   vertical-align: middle;
   display: inline-block;
   background-color: #A2D2FF;
-  padding:20px;
-  height: calc(100% - 67px);
+  padding:10px 40px 10px 40px;
+  width: 410px;
+  border-radius: 10px;
+  color: #ffffff;
 }
 
 .page-sidebar h2{
@@ -118,25 +119,40 @@
   font-weight: bold;
 }
 
-.page-sidebar h4{
+.page-sidebar h5{
   color: #000000;
   font-weight: bold;
   text-overflow: clip;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .tutorial-window{
   background-color: #ffffff;
   border-radius: 10px;
-  height: 27%;
-  width:100%;
   margin-top: 20px;
+  padding: 2px 20px 2px 20px;
 }
 
 .example-window{
   background-color: #03045E;
   border-radius: 10px;
-  height: 50%;
-  width:100%;
-  margin-top: 20px;
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.example-window h4{
+  color: var(--highlight-color);
+}
+
+.tutorial-gif{
+width: 300px;
+height: 150px;
+}
+
+.csv-format pre {
+  color: #000000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top :10px;
 }
