@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function submitCsv() {
-  eventIdArray = []; // Clear event IDs array
+  eventIdArray = [];
   let csvType = document.getElementById("csv-type-select").value;
   let csvFile = document.getElementById("input-file").files[0];
 
