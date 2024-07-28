@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 :root {
-  --primary-color: #03045e; /* Fresh green for primary actions */
-  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
-  --background-color: #ffffff; /* Very light gray for background */
-  --text-color: #0077b6; /* Dark gray for text */
-  --border-color: #90e0ef; /* Light gray for borders */
-  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
+  --primary-color: #03045e; 
+  --secondary-color: #00b4d8;
+  --background-color: #ffffff;
+  --text-color: #0077b6;
+  --border-color: #90e0ef; 
+  --highlight-color: #a2d2ff;
 }
 
 a {
