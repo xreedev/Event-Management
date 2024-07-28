@@ -37,7 +37,10 @@ html {
   font-weight: bold;
   color: var(--text-color);
 }
-
+.todo-header h1{
+  display: inline-block;
+  vertical-align: middle;
+}
 .todo-header {
   width: 100%;
   background-color: var(--primary-color);
