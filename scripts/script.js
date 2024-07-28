@@ -62,7 +62,7 @@ function handleFileLoad(e, csvType) {
     if (success) {
       setWarningPopup("Events added successfully");
       document.getElementById("input-file").value = "";
-      console.log(eventIdArray)
+      console.log(eventIdArray);
     }
   } else if (csvType === "tasks") {
     success = parseToTask(contents);
@@ -116,9 +116,9 @@ function processEventRow(row, eventList, eventIdArray) {
         return false;
       }
       const event = new Event(columns[0], columns[1], columns[2], columns[3]);
-      console.log(columns[0])
+      console.log(columns[0]);
       eventIdArray.push(columns[0]);
-      
+
       eventList.push(event);
     } else {
       setWarningPopup("There are overlapping events. Please check CSV.");
@@ -175,7 +175,7 @@ function processTaskRow(row, taskList) {
   const taskName = columns[1];
 
   if (!eventIdArray.includes(eventId)) {
-    console.log(eventId)
+    console.log(eventId);
     setWarningPopup("Event ID in task does not exist");
     document.getElementById("input-file").value = "";
     return false;
