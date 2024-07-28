@@ -37,7 +37,7 @@ html {
   font-weight: bold;
   color: var(--text-color);
 }
-.todo-header h1{
+.todo-header h1 {
   display: inline-block;
   vertical-align: middle;
 }

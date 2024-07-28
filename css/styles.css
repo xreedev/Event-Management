@@ -76,7 +76,8 @@
   border: 1px solid var(--secondary-color);
 }
 
-.goto-button:hover,.refresh-button:hover {
+.goto-button:hover,
+.refresh-button:hover {
   background-color: var(--background-color);
 }
 

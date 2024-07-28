@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const eventJson = localStorage.getItem("events");
   let events = JSON.parse(eventJson);
   let eventsTable = document.getElementById("events-table");
-  failed=[];
+  failed = [];
 
   events.forEach((element) => {
     let eventName = element["eventName"];
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProgress(eventId);
     checkFailure(startDate, eventId);
   });
-  localStorage.setItem('failedTasks',failed);
+  localStorage.setItem("failedTasks", failed);
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -72,8 +72,8 @@ function createAction(eventId) {
 }
 
 function goToTasks(eventId) {
-  let tasks=JSON.parse(localStorage.getItem("tasks"));
-  if(tasks==null || tasks.length==0){
+  let tasks = JSON.parse(localStorage.getItem("tasks"));
+  if (tasks == null || tasks.length == 0) {
     setWarningPopup("No tasks added");
     return;
   }
@@ -132,4 +132,3 @@ function reverseInvoice() {
   document.getElementById("contents-div").style.opacity = "100%";
   document.getElementById("warning-popup").style.padding = "0px";
 }
-
