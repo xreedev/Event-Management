@@ -25,15 +25,6 @@ html {
   font-family: "Open Sans", sans-serif;
 }
 
-.page-container {
-  background-color: #ffffff;
-  padding: 1%;
-  vertical-align: top;
-  display: inline-block;
-  width: calc(100% - 505px);
-  position: relative;
-}
-
 .title-header {
   font-family: monospace;
   font-size: 2rem;
