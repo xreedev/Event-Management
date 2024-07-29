@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   tasks = JSON.parse(taskJson);
   tasksTable = document.getElementById("tasks-table");
   requiredEvent = localStorage.getItem("eventId");
+  requiredEventName = localStorage.getItem("eventName");
   taskCount = 0;
   statusArray = [];
+  setEventName();
   tasks.forEach((element) => {
     let taskId = element["eventId"];
     if (taskId == requiredEvent) {
@@ -18,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   updateStatus();
 });
+
+function setEventName(){
+  document.getElementById("event-name").textContent=requiredEventName;
+}
 
 function createRow(taskId, taskName) {
   let idRow = document.createElement("td");
