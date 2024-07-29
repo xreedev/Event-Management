@@ -49,12 +49,12 @@ function submitCsv() {
   }
 
   const reader = new FileReader();
-  reader.onload = (e) => handleFileLoad(e, csvType);
+  reader.onload = (event) => handleFile(event, csvType);
   reader.readAsText(csvFile);
 }
 
-function handleFileLoad(e, csvType) {
-  const contents = e.target.result;
+function handleFile(event, csvType) {
+  const contents = event.target.result;
   let success = false;
 
   if (csvType === "events") {
