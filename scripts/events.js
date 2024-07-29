@@ -34,7 +34,7 @@ function createRow(eventId, eventName, startDate, endDate) {
 
   let progressRow = document.createElement("td");
   progressRow.id = "progress-" + eventId;
-  let actionRow = createAction(eventId,eventName);
+  let actionRow = createAction(eventId, eventName);
 
   idRow.textContent = eventId;
   nameRow.textContent = eventName;
@@ -55,11 +55,11 @@ function createRow(eventId, eventName, startDate, endDate) {
   return eventColumn;
 }
 
-function createAction(eventId,eventName) {
+function createAction(eventId, eventName) {
   let actionRow = document.createElement("td");
   let actionAnchor = document.createElement("a");
   actionAnchor.onclick = function () {
-    goToTasks(eventId,eventName);
+    goToTasks(eventId, eventName);
   };
   let actionButton = document.createElement("button");
   actionButton.className = "action-button";
@@ -71,14 +71,14 @@ function createAction(eventId,eventName) {
   return actionRow;
 }
 
-function goToTasks(eventId,eventName) {
+function goToTasks(eventId, eventName) {
   let tasks = JSON.parse(localStorage.getItem("tasks"));
   if (tasks == null || tasks.length == 0) {
     setWarningPopup("No tasks added");
     return;
   }
   localStorage.setItem("eventId", eventId);
-  localStorage.setItem("eventName",eventName);
+  localStorage.setItem("eventName", eventName);
   window.location.href = "./tasks.html";
 }
 
@@ -99,18 +99,16 @@ function updateProgress(eventId) {
 function checkFailure(startDateStr, eventId) {
   let progressRow = document.getElementById("progress-" + eventId);
   let startDate = new Date(startDateStr);
-  let taskStatusJson=localStorage.getItem("task-status-"+eventId);
+  let taskStatusJson = localStorage.getItem("task-status-" + eventId);
   let taskStatus = JSON.parse(taskStatusJson);
-  console.log("task-status-"+eventId)
-  console.log(status)
+  console.log("task-status-" + eventId);
+  console.log(status);
   const todayDate = new Date();
   if (startDate < todayDate) {
-    if (!(taskStatus.every((status) => status === "Complete")))
-      {
-        progressRow.textContent = "Failed";
-        progressRow.id = "";
-      }
-    
+    if (!taskStatus.every((status) => status === "Complete")) {
+      progressRow.textContent = "Failed";
+      progressRow.id = "";
+    }
   }
 }
 

@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
   updateStatus();
 });
 
-function setEventName(){
-  document.getElementById("event-name").textContent=requiredEventName;
+function setEventName() {
+  document.getElementById("event-name").textContent = requiredEventName;
 }
 
 function createRow(taskId, taskName) {
