@@ -13,16 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let eventColumn = createRow(eventId, eventName, startDate, endDate);
     eventsTable.appendChild(eventColumn);
 
-    // Get the number of tasks for this event
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let taskCount = tasks.filter(task => task["eventId"] === eventId).length;
-    console.log(taskCount)
+
 
     if (!localStorage.getItem("task-status-" + eventId)) {
 
-      // Initialize task statuses based on the number of tasks
       let initialStatusArray = Array(taskCount).fill("Not Started");
-      console.log(initialStatusArray)
+
       localStorage.setItem(
         "task-status-" + eventId,
         JSON.stringify(initialStatusArray)
