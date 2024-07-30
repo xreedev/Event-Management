@@ -14,11 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     eventsTable.appendChild(eventColumn);
 
     let tasks = JSON.parse(localStorage.getItem("tasks"));
-    let taskCount = tasks.filter(task => task["eventId"] === eventId).length;
-
+    let taskCount = tasks.filter((task) => task["eventId"] === eventId).length;
 
     if (!localStorage.getItem("task-status-" + eventId)) {
-
       let initialStatusArray = Array(taskCount).fill("Not Started");
 
       localStorage.setItem(
@@ -33,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   localStorage.setItem("failedTasks", JSON.stringify(failed));
 });
-
 
 function createRow(eventId, eventName, startDate, endDate) {
   let idRow = document.createElement("td");
