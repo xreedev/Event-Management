@@ -11,20 +11,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDate = element["endDate"];
 
     let eventColumn = createRow(eventId, eventName, startDate, endDate);
-
     eventsTable.appendChild(eventColumn);
+
+    // Get the number of tasks for this event
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let taskCount = tasks.filter(task => task["eventId"] === eventId).length;
+    console.log(taskCount)
+
     if (!localStorage.getItem("task-status-" + eventId)) {
+
+      // Initialize task statuses based on the number of tasks
+      let initialStatusArray = Array(taskCount).fill("Not Started");
+      console.log(initialStatusArray)
       localStorage.setItem(
         "task-status-" + eventId,
-        JSON.stringify(["Not Started", "Not Started", "Not Started"])
+        JSON.stringify(initialStatusArray)
       );
     }
 
     updateProgress(eventId);
     checkFailure(startDate, eventId);
   });
-  localStorage.setItem("failedTasks", failed);
+
+  localStorage.setItem("failedTasks", JSON.stringify(failed));
 });
+
 
 function createRow(eventId, eventName, startDate, endDate) {
   let idRow = document.createElement("td");
@@ -101,8 +112,6 @@ function checkFailure(startDateStr, eventId) {
   let startDate = new Date(startDateStr);
   let taskStatusJson = localStorage.getItem("task-status-" + eventId);
   let taskStatus = JSON.parse(taskStatusJson);
-  console.log("task-status-" + eventId);
-  console.log(status);
   const todayDate = new Date();
   if (startDate < todayDate) {
     if (!taskStatus.every((status) => status === "Complete")) {

@@ -86,6 +86,7 @@ function parseToEvent(contents) {
       return false;
     }
   }
+  localStorage.clear();
 
   localStorage.setItem("events", JSON.stringify(eventList));
   return true;
