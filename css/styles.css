@@ -1,12 +1,4 @@
 @import url("./header.css");
-:root {
-  --primary-color: #03045e; /* Fresh green for primary actions */
-  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
-  --background-color: #ffffff; /* Very light gray for background */
-  --text-color: #0077b6; /* Dark gray for text */
-  --border-color: #90e0ef; /* Light gray for borders */
-  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
-}
 .upload-csv-div {
   background-color: var(--primary-color);
   border-radius: 20px;
@@ -79,12 +71,27 @@
   margin-top: 20px;
 }
 
+.refresh-button {
+  background-color: var(--highlight-color);
+  border-radius: 5px;
+  border: 2px solid var(--text-color);
+  width: 50%;
+  color: var(--text-color);
+  max-width: 200px;
+  height: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
 .submit-csv-button:hover {
   background-color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
 }
 
-.goto-button:hover {
+.goto-button:hover,
+.refresh-button:hover {
   background-color: var(--background-color);
 }
 

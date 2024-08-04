@@ -9,10 +9,29 @@
   --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 .confirm-button {
-  width: 100px;
-  height: 20px;
+  width: 200px;
+  height: 30px;
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   background-color: var(--primary-color);
   color: azure;
   margin-top: 50px;
+  font: 1em bold ;
+}
+
+.confirm-button:hover{
+  background-color: var(--highlight-color);
+  color: var(--primary-color);
+}
+
+.event-name{
+  margin: 15px;
+}
+
+select{
+background-color: var(--background-color);
+color: var(--primary-color);
+font-weight: bold;
+width: 100px;
+height: 25px;
 }

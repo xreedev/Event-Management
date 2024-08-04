@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const eventJson = localStorage.getItem("events");
   let events = JSON.parse(eventJson);
   let eventsTable = document.getElementById("events-table");
-  failed=[];
+  failed = [];
 
   events.forEach((element) => {
     let eventName = element["eventName"];
@@ -11,19 +11,25 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDate = element["endDate"];
 
     let eventColumn = createRow(eventId, eventName, startDate, endDate);
-
     eventsTable.appendChild(eventColumn);
+
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let taskCount = tasks.filter((task) => task["eventId"] === eventId).length;
+
     if (!localStorage.getItem("task-status-" + eventId)) {
+      let initialStatusArray = Array(taskCount).fill("Not Started");
+
       localStorage.setItem(
         "task-status-" + eventId,
-        JSON.stringify(["Not Started", "Not Started", "Not Started"])
+        JSON.stringify(initialStatusArray)
       );
     }
 
     updateProgress(eventId);
     checkFailure(startDate, eventId);
   });
-  localStorage.setItem('failedTasks',failed);
+
+  localStorage.setItem("failedTasks", JSON.stringify(failed));
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
@@ -34,7 +40,7 @@ function createRow(eventId, eventName, startDate, endDate) {
 
   let progressRow = document.createElement("td");
   progressRow.id = "progress-" + eventId;
-  let actionRow = createAction(eventId);
+  let actionRow = createAction(eventId, eventName);
 
   idRow.textContent = eventId;
   nameRow.textContent = eventName;
@@ -55,11 +61,11 @@ function createRow(eventId, eventName, startDate, endDate) {
   return eventColumn;
 }
 
-function createAction(eventId) {
+function createAction(eventId, eventName) {
   let actionRow = document.createElement("td");
   let actionAnchor = document.createElement("a");
   actionAnchor.onclick = function () {
-    goToTasks(eventId);
+    goToTasks(eventId, eventName);
   };
   let actionButton = document.createElement("button");
   actionButton.className = "action-button";
@@ -71,13 +77,12 @@ function createAction(eventId) {
   return actionRow;
 }
 
-function goToTasks(eventId) {
-  let tasks=JSON.parse(localStorage.getItem("tasks"));
-  if(tasks==null || tasks.length==0){
+
     setWarningPopup("No tasks added");
     return;
   }
   localStorage.setItem("eventId", eventId);
+  localStorage.setItem("eventName", eventName);
   window.location.href = "./tasks.html";
 }
 
@@ -98,12 +103,14 @@ function updateProgress(eventId) {
 function checkFailure(startDateStr, eventId) {
   let progressRow = document.getElementById("progress-" + eventId);
   let startDate = new Date(startDateStr);
+  let taskStatusJson = localStorage.getItem("task-status-" + eventId);
+  let taskStatus = JSON.parse(taskStatusJson);
   const todayDate = new Date();
   if (startDate < todayDate) {
-    failed.push(eventId);
-    console.log(todayDate);
-    progressRow.textContent = "Failed";
-    progressRow.id = "";
+    if (!taskStatus.every((status) => status === "Complete")) {
+      progressRow.textContent = "Failed";
+      progressRow.id = "";
+    }
   }
 }
 
@@ -131,4 +138,4 @@ function reverseInvoice() {
   document.getElementById("warning-popup").style.border = "none";
   document.getElementById("contents-div").style.opacity = "100%";
   document.getElementById("warning-popup").style.padding = "0px";
-}
+
