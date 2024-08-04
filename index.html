@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Event Manager</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <div class="todo-header">
-      <h1>EVENT MANAGER</h1>
+
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Manager</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+  <div class="todo-header">
+    <h1>EVENT MANAGER</h1>
+  </div>
+  <div class="page-sidebar">
+    <h2>GUIDE</h2>
+    <h5>Events can have multiple tasks,and event progress will be updated based on task progress.</h5>
+    <div class="tutorial-window">
+      <img src="./assets/Event-management-tutoiral.gif" alt="Descriptive text about the GIF" class="tutorial-gif">
     </div>
-    <div class="page-container">
+
+        </div>
+    </div>
+  </div>
+  <div class="page-container">
+    <div class="contents-div" id="csv-input-div">
       <div class="title-header">UPLOAD CSV</div>
-      <div class="contents-div" id="csv-input-div">
-        <div class="upload-csv-div">
-          <label for="csv-type-select" class="csv-type-label"
-            >Select the type of CSV and upload</label
-          >
-          <br />
-          <select id="csv-type-select" class="csv-type-select" required>
-            <option value="events">Events</option>
-            <option value="tasks">Tasks</option>
-          </select>
-          <br />
-          <input
-            type="file"
-            id="input-file"
-            name="filename"
-            class="input-file"
-            accept=".csv"
-          />
-          <br />
-          <input
-            type="submit"
-            class="submit-csv-button"
-            onclick="submitCsv()"
-          />
-        </div>
-        <div class="goto-page">
-          <button class="goto-button" onclick="goToEvent()">Events</button>
-          <button class="refresh-button" id="refresh-button">REFRESH</button>
-        </div>
+      <div class="upload-csv-div">
+        <label for="csv-type-select" class="csv-type-label">Select the type of CSV and upload</label>
+        <br />
+        <select id="csv-type-select" class="csv-type-select" required>
+          <option value="events">Events</option>
+          <option value="tasks">Tasks</option>
+        </select>
+        <br />
+        <input type="file" id="input-file" name="filename" class="input-file" accept=".csv" />
+        <br />
+        <input type="submit" class="submit-csv-button" onclick="submitCsv()" />
       </div>
-      <div class="warning-popup" id="warning-popup">
-        <div id="warning-msg"></div>
+      <div class="goto-page">
+        <button class="goto-button" onclick="goToEvent()">Events</button>
       </div>
     </div>
-    <script src="./scripts/script.js"></script>
-  </body>
+    <div class="warning-popup" id="warning-popup">
+      <div id="warning-msg"></div>
+    </div>
+  </div>
+  <script src="./scripts/script.js"></script>
+</body>
+
 </html>

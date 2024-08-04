@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   requiredEventName = localStorage.getItem("eventName");
   taskCount = 0;
   statusArray = [];
-  setEventName();
+
   tasks.forEach((element) => {
     let taskId = element["eventId"];
     if (taskId == requiredEvent) {

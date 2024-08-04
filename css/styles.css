@@ -1,11 +1,24 @@
 @import url("./header.css");
 .upload-csv-div {
   background-color: var(--primary-color);
-  border-radius: 10px;
+  border-radius: 20px;
   border: 5px solid var(--secondary-color);
   color: var(--highlight-color);
   padding: 20px;
+  margin:10px auto;
+  text-align: center;
 }
+
+
+.page-container {
+  background-color: #ffffff;
+  padding: 1%;
+  vertical-align: top;
+  display: inline-block;
+  width: calc(100% - 505px);
+  position: relative;
+}
+
 
 .warning-popup {
   position: absolute;
@@ -42,6 +55,7 @@
   height: 30px;
   margin-bottom: 20px;
   margin-top: 20px;
+
 }
 
 .goto-button {
@@ -107,3 +121,238 @@
   text-align: center;
   cursor: pointer;
 }
+
+.page-sidebar{
+  background-color: #A2D2FF;
+  padding:10px 40px 10px 40px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.page-sidebar h2{
+  color: #03045E;
+  font-weight: bold;
+}
+
+.page-sidebar h5{
+  color: #000000;
+  font-weight: bold;
+  text-overflow: clip;
+  margin-top: 5px;
+}
+
+.tutorial-window{
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 2px 20px 2px 20px;
+}
+
+.example-window{
+  background-color: #03045E;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.example-window h4{
+  color: var(--highlight-color);
+}
+
+.tutorial-gif{
+width: 300px;
+height: 150px;
+}
+
+.csv-format pre {
+  color: #000000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top :10px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  :root {
+    --primary-color: #03045e; /* Fresh green for primary actions */
+    --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
+    --background-color: #ffffff; /* Very light gray for background */
+    --text-color: #0077b6; /* Dark gray for text */
+    --border-color: #90e0ef; /* Light gray for borders */
+    --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
+  }
+  
+  body,
+  html {
+    height: 100vh;
+    width: 100vw;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--highlight-color);
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .title-header {
+    font-family: monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+  }
+  
+  .todo-header {
+    width: 100%;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .page-container {
+    width: max-content;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    background-color: var(--highlight-color);
+    padding: 1%;
+  }
+  
+  .page-sidebar {
+    background-color: var(--highlight-color);
+    padding: 10px 40px;
+    border-radius: 10px;
+    color: #ffffff;
+    flex: 1 1 300px;
+  }
+  
+  .page-sidebar h2 {
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  .page-sidebar h5 {
+    color: #000000;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .tutorial-window {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 2px 20px;
+  }
+  
+  .example-window {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 25px;
+  }
+  
+  .example-window h4 {
+    color: var(--highlight-color);
+  }
+  
+  .tutorial-gif {
+    width: 100%;
+    height: auto;
+  }
+  
+  .csv-format pre {
+    color: #000000;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    overflow-x: auto;
+  }
+  
+  .contents-div {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 5px solid var(--secondary-color);
+    color: var(--highlight-color);
+    padding: 20px;
+    margin: 10px auto;
+    text-align: center;
+    flex: 1 1 600px;
+  }
+  
+  .upload-csv-div {
+    margin: 20px 0;
+  }
+  
+  .input-file {
+    background-color: var(--background-color);
+    margin: 5% auto;
+    border: 1px solid var(--text-color);
+    padding: 8% 5%;
+    width: 90%;
+    max-width: 400px;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+  
+  .submit-csv-button,
+  .goto-button,
+  .close-btn {
+    background-color: var(--highlight-color);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    width: 50%;
+    max-width: 200px;
+    height: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .submit-csv-button:hover,
+  .goto-button:hover,
+  .close-btn:hover {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+  
+  .csv-type-select {
+    width: 80%;
+    max-width: 300px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  .csv-type-label {
+    font-size: 15px;
+    color: var(--background-color);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .warning-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--highlight-color);
+    border-radius: 20px;
+    z-index: 1000;
+  }
+  
+  .warning-msg {
+    margin-bottom: 10px;
+  }
+}
+
