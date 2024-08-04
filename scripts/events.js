@@ -77,7 +77,9 @@ function createAction(eventId, eventName) {
   return actionRow;
 }
 
-
+function goToTasks(eventId, eventName) {
+  let tasks = JSON.parse(localStorage.getItem("tasks"));
+  if (tasks == null || tasks.length == 0) {
     setWarningPopup("No tasks added");
     return;
   }
@@ -138,4 +140,4 @@ function reverseInvoice() {
   document.getElementById("warning-popup").style.border = "none";
   document.getElementById("contents-div").style.opacity = "100%";
   document.getElementById("warning-popup").style.padding = "0px";
-
+}

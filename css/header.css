@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 :root {
-  --primary-color: #03045e; 
-  --secondary-color: #00b4d8;
-  --background-color: #ffffff;
-  --text-color: #0077b6;
-  --border-color: #90e0ef; 
-  --highlight-color: #a2d2ff;
+  --primary-color: #03045e; /* Fresh green for primary actions */
+  --secondary-color: #00b4d8; /* Vibrant teal for secondary actions */
+  --background-color: #ffffff; /* Very light gray for background */
+  --text-color: #0077b6; /* Dark gray for text */
+  --border-color: #90e0ef; /* Light gray for borders */
+  --highlight-color: #a2d2ff; /* Bright yellow for highlights and alerts */
 }
 
 a {
@@ -20,15 +20,20 @@ a {
 
 body,
 html {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
   font-family: "Open Sans", sans-serif;
+}
+
+.page-container {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 1%;
+  position: relative;
 }
 
 .title-header {
   font-family: monospace;
   font-size: 2rem;
-  /* text-align: left; */
   font-weight: bold;
   color: var(--text-color);
 }
@@ -38,10 +43,9 @@ html {
 }
 .todo-header {
   width: 100%;
-  height: 60px;
   background-color: var(--primary-color);
   color: var(--background-color);
-  padding: 10px 0 0 20px;
+  padding: 1%;
 }
 
 .contents-div {
@@ -49,7 +53,6 @@ html {
   font-size: large;
   font-weight: bold;
   width: 80%;
-  text-align: center;
   /* max-width: 600px; */
   border-radius: 5px;
 }
