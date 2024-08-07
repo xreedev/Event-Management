@@ -11,19 +11,25 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDate = element["endDate"];
 
     let eventColumn = createRow(eventId, eventName, startDate, endDate);
-
     eventsTable.appendChild(eventColumn);
+
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let taskCount = tasks.filter((task) => task["eventId"] === eventId).length;
+
     if (!localStorage.getItem("task-status-" + eventId)) {
+      let initialStatusArray = Array(taskCount).fill("Not Started");
+
       localStorage.setItem(
         "task-status-" + eventId,
-        JSON.stringify(["Not Started", "Not Started", "Not Started"])
+        JSON.stringify(initialStatusArray)
       );
     }
 
     updateProgress(eventId);
     checkFailure(startDate, eventId);
   });
-  localStorage.setItem("failedTasks", failed);
+
+  localStorage.setItem("failedTasks", JSON.stringify(failed));
 });
 
 function createRow(eventId, eventName, startDate, endDate) {
