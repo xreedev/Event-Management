@@ -114,7 +114,7 @@ function processEventRow(row, eventList, eventIdArray) {
         setWarningPopup("There are repeated events");
         document.getElementById("input-file").value = "";
         return false;
-      }
+      } 
       const event = new Event(columns[0], columns[1], columns[2], columns[3]);
       console.log(columns[0]);
       eventIdArray.push(columns[0]);

@@ -101,8 +101,6 @@ function checkFailure(startDateStr, eventId) {
   let startDate = new Date(startDateStr);
   let taskStatusJson = localStorage.getItem("task-status-" + eventId);
   let taskStatus = JSON.parse(taskStatusJson);
-  console.log("task-status-" + eventId);
-  console.log(status);
   const todayDate = new Date();
   if (startDate < todayDate) {
     if (!taskStatus.every((status) => status === "Complete")) {
